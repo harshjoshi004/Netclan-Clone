@@ -1,6 +1,8 @@
 package com.example.netclan.ExploreScreen
 
 import androidx.annotation.DrawableRes
+import androidx.compose.runtime.MutableIntState
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
@@ -9,13 +11,13 @@ import com.example.netclan.R
 
 class ExploreScreenViewModel:ViewModel() {
     private val _selectedTabIndex  =  mutableIntStateOf(0)
-    val selectedTabIndex = _selectedTabIndex
+    val selectedTabIndex: MutableIntState = _selectedTabIndex
     fun setSelectedTab(i:Int){
         _selectedTabIndex.intValue = i
     }
 
     private val _selectedScreenIndex  =  mutableIntStateOf(0)
-    val selectedScreenIndex = _selectedScreenIndex
+    val selectedScreenIndex: MutableIntState = _selectedScreenIndex
     fun setSelectedScreen(i:Int){
         _selectedScreenIndex.intValue = i
     }

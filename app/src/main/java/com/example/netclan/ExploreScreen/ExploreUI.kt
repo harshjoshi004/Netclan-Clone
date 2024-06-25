@@ -82,13 +82,17 @@ fun ExploreUI( navcon : NavHostController){
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val pagerState = rememberPagerState { viewModel.tabs.size }
-    
-    LaunchedEffect(viewModel.selectedTabIndex){
-        pagerState.animateScrollToPage(viewModel.selectedTabIndex.intValue)
+
+    LaunchedEffect(pagerState.currentPage) {
+        if (pagerState.currentPage != viewModel.selectedTabIndex.intValue) {
+            viewModel.setSelectedTab(pagerState.currentPage)
+        }
     }
 
-    LaunchedEffect(pagerState.currentPage){
-        viewModel.selectedTabIndex.intValue = pagerState.currentPage
+    LaunchedEffect(viewModel.selectedTabIndex.intValue) {
+        if (pagerState.currentPage != viewModel.selectedTabIndex.intValue) {
+            pagerState.scrollToPage(viewModel.selectedTabIndex.intValue)
+        }
     }
     
     NetclanTheme {
